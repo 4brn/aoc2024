@@ -12,11 +12,17 @@ for line in data:
     left.append(int(line[0]))
     right.append(int(line[1]))
 
-left.sort()
-right.sort()
+similarity = {}
+for num in right:
+    if num in similarity.keys():
+        similarity[num] += 1
+    else:
+        similarity[num] = 1
 
 sum = 0
-for lnum, rnum in zip(left, right):
-    sum += abs(lnum - rnum)
+for num in left:
+    if num in similarity.keys():
+        sum += num * similarity[num]
 
 print(sum)
+
